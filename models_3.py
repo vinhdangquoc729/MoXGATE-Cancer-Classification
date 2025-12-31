@@ -97,8 +97,8 @@ class multiGCNEncoder(nn.Module):
         self.meth = GraphGCN(dim_list[3], dim_hid_list[3], self.hidden_dim, dropout, npatient)
 
         # 2. Gated Fusion Mechanism (Thay cho cộng/nối)
-        self.fusion = GatedFusion(input_dim=self.hidden_dim, num_modalities=4)
-        
+        # self.fusion = GatedFusion(input_dim=self.hidden_dim, num_modalities=4)
+        self.w = nn.Parameter(torch.full((4,), 0.25))
         # 3. Final Prediction Head
         self.predictor = nn.Sequential(
             nn.Linear(self.hidden_dim, 256),
@@ -117,7 +117,7 @@ class multiGCNEncoder(nn.Module):
         
         # Bước 2: Hợp nhất thông minh (Gated Fusion)
         # Mạng sẽ tự quyết định xem RNA hay Meth quan trọng hơn đối với *từng bệnh nhân*
-        z_fused = self.fusion([x_r, x_d, x_c, x_mic])
+        z_fused = self.w[0] * x_r + self.w[1] * x_d + self.w[2] * x_c + self.w[3] * x_mic
         
         # Bước 3: Dự đoán cuối cùng
         z = self.predictor(z_fused)
