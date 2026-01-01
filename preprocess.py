@@ -5,7 +5,7 @@ import pandas as pd
 BASE_DIR = '.' 
 DIR_FEA_ROOT = os.path.join(BASE_DIR, 'fea')
 DIR_PROTEIN_ROOT = os.path.join(BASE_DIR, 'protein')
-OUTPUT_DIR = os.path.join(BASE_DIR, 'processed_data_common_no_protein')
+OUTPUT_DIR = os.path.join(BASE_DIR, 'processed_data_no_protein')
 OUTPUT_DIR_ALL = os.path.join(OUTPUT_DIR, 'all') # Thư mục chứa file gộp
 
 # Danh sách folder

@@ -3,4 +3,5 @@ __pycache__/
 classify/*.csv
 processed_data_common/*/*.csv
 processed_data_common_no_protein/*/*.csv
+processed_data_no_protein/*/*.csv
 *.pth

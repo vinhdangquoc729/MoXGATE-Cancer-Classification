@@ -11,13 +11,11 @@ import datetime
 import os
 from os.path import isfile
 
-# Import 3 phiên bản model khác nhau
-from models_1 import multiGCNEncoder as Model_Gated
-from models_2 import multiGCNEncoder as Model_Average
-from models_3 import multiGCNEncoder as Model_Learnable
+from experimental_models.models_1 import multiGCNEncoder as Model_Gated
+from experimental_models.models_2 import multiGCNEncoder as Model_Average
+from experimental_models.models_3 import multiGCNEncoder as Model_Learnable
 from utils import gen_adj_mat_tensor
 
-# --- CẤU HÌNH ---
 cuda = True if torch.cuda.is_available() else False
 dataType = ['RNA' ,'miRNA','CN','meth'] 
 data_fold_train ='./processed_data_common/all/' 
